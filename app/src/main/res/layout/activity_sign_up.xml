@@ -53,7 +53,8 @@
         app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771" />
+        app:layout_constraintVertical_bias="0.771"
+        android:onClick="logInClicked"/>
 
     <Button
         android:id="@+id/signUpButton"
@@ -65,6 +66,7 @@
         app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.772"
+        android:onClick="signUpClicked"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

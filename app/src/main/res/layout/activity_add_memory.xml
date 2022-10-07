@@ -26,19 +26,18 @@
         tools:layout_editor_absoluteX="28dp"
         tools:layout_editor_absoluteY="136dp">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#BBF4BC"
-            android:text="Select a Memory Rating"
-            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/memorySpinner"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="95dp" />
 
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
             android:layout_height="99dp"
-            android:layout_marginTop="@dimen/myPadding"
+            android:layout_marginTop="@dimen/myLayout_marginTop"
             android:background="#C8F1CA"
             android:ems="10"
             android:hint="Name of Memory"
@@ -52,9 +51,11 @@
             android:background="#C6F1C8"
             android:ems="10"
             android:hint="Description"
-            android:layout_marginTop="@dimen/myPadding"
+            android:layout_marginTop="@dimen/myLayout_marginTop"
             android:inputType="textPersonName"
             android:textSize="20sp" />
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

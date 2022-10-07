@@ -1,6 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/priorityChosen"
+    style="?attr/spinnerDropDownItemStyle"
+    android:layout_width="@dimen/myLayoutWidth"
+    android:layout_height="@dimen/myLayoutHeight"
+    android:text="My Choice"
+    android:padding="@dimen/myPadding"
+    android:background="@color/secondaryDarkColor"
+    android:textColor="@color/primaryTextColor"
+    android:textSize="@dimen/myTextSize"
+    android:layout_marginTop="@dimen/myLayout_marginTop"
+    />
