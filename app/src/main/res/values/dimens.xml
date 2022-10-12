@@ -4,8 +4,8 @@
     <dimen name = "myLayoutHeight">100dp</dimen>
     <dimen name="myPadding">10dp</dimen>
     <dimen name = "myLayout_marginTop">10dp</dimen>
-    <dimen name = "myTextSize">32dp</dimen>
+    <dimen name = "myTextSize">32sp</dimen>
     <dimen name="spinnerHeight">40dp</dimen>
     <dimen name="buttonWidth">100dp</dimen>
-    <dimen name="fontTitle">40dp</dimen>
+    <dimen name="fontTitle">40sp</dimen>
 </resources>

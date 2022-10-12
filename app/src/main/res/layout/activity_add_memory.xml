@@ -13,23 +13,31 @@
         android:layout_height="wrap_content"
         android:text="Add  a Memory"
         android:textSize="32sp"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.11"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="337dp"
         android:layout_height="300dp"
         android:background="#FFFFFF"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="136dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
         <Spinner
             android:id="@+id/memorySpinner"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
+            android:entries="@array/memoryRating"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="95dp" />
 
@@ -48,10 +56,10 @@
             android:id="@+id/editTextTextPersonName2"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginTop="@dimen/myLayout_marginTop"
             android:background="#C6F1C8"
             android:ems="10"
             android:hint="Description"
-            android:layout_marginTop="@dimen/myLayout_marginTop"
             android:inputType="textPersonName"
             android:textSize="20sp" />
     </LinearLayout>
