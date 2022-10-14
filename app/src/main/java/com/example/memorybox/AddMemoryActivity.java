@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +19,10 @@ public class AddMemoryActivity extends AppCompatActivity implements AdapterView.
     // https://www.youtube.com/watch?v=7tnlh1nVkuE
 
     Spinner spinner;
+    EditText memoryName, memoryDesc;
+    String spinnerSelectedText = "none";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +30,8 @@ public class AddMemoryActivity extends AppCompatActivity implements AdapterView.
 
         // this attaches my spinner design (spinner_list.xml) and my array of spinner choices(R.array.memoryRating)
         spinner = findViewById(R.id.memorySpinner);
+        memoryName = findViewById(R.id.memNameEditText);
+        memoryDesc = findViewById(R.id.memoryDescEditText);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_list,
                 getResources().getStringArray(R.array.memoryRating));
 

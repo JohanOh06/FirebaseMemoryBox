@@ -41,7 +41,33 @@ public class SignInActivity extends AppCompatActivity  {
         signUpB = findViewById(R.id.signUpButton);
         userNameET = findViewById(R.id.userNameEditText);
         passwordET = findViewById(R.id.passwordEditText);
+
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        updateUI();
+    }
+
+    /**
+     * This method will check to see if a user is already signed it to the app.
+     * If a user is signed in, then they will be taken to SelectActionActivity
+     * instead of loading this main screen
+     */
+
+    public void updateUI() {
+        // if the user is already logged in, then they bypass this screen
+        Log.d(TAG, "inside updateUI: " + firebaseHelper.getmAuth().getUid());
+        if (firebaseHelper.getmAuth().getUid() != null) {
+            firebaseHelper.attachReadDataToUser();
+            Intent intent = new Intent(SignInActivity.this, SelectActionActivity.class);
+            startActivity(intent);
+        }
+    }
+
 
     /**
      * Method first checks if the input is valid.  If it meets the screening criteria from
@@ -76,8 +102,10 @@ public class SignInActivity extends AppCompatActivity  {
 
                             if (task.isSuccessful()){
                                 // Sign up successful, update UI with the currently signed in user's info
-                                firebaseHelper.updateUid(firebaseHelper.getmAuth().getUid());
                                 Log.d(TAG, userName + " created and logged in");
+
+                                firebaseHelper.addUserToFirestore(userName,
+                                        firebaseHelper.getmAuth().getUid());
 
                                 // we will implement this later
                                 // updateIfLoggedIn();
