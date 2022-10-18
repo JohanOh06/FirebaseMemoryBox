@@ -39,12 +39,13 @@
             android:layout_height="72dp"
             android:entries="@array/memoryRating"
             tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="95dp" />
+            tools:layout_editor_absoluteY="95dp"
+            android:backgroundTint="@color/white"/>
 
         <EditText
             android:id="@+id/memNameEditText"
             android:layout_width="match_parent"
-            android:layout_height="99dp"
+            android:layout_height="50dp"
             android:layout_marginTop="@dimen/myLayout_marginTop"
             android:background="#C8F1CA"
             android:ems="10"
@@ -55,15 +56,30 @@
         <EditText
             android:id="@+id/memoryDescEditText"
             android:layout_width="match_parent"
-            android:layout_height="153dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/myLayout_marginTop"
             android:background="#C6F1C8"
             android:ems="10"
             android:hint="Description"
+            android:gravity="top"
+            android:layout_weight="0"
             android:inputType="textPersonName"
             android:textSize="20sp" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:onClick="addMemoryButtonClicked"
+        android:text="Add Memory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
