@@ -34,7 +34,7 @@ public class SignInActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_sign_in);
 
         firebaseHelper = new FirebaseHelper();
         logInB = findViewById(R.id.logInButton);

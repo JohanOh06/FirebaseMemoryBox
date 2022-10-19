@@ -32,4 +32,3 @@ public class SelectActionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
