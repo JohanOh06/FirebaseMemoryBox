@@ -1,40 +1,22 @@
 package com.example.memorybox;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-import android.app.Activity;
-import android.app.Application;
-import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.checkerframework.checker.units.qual.A;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Executor;
 
 /**
  * The purpose of this class is to hold ALL the code to communicate with Firebase.  This class
@@ -56,15 +38,16 @@ public class FirebaseHelper {
 
 
     public FirebaseHelper() {
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        myMemories = new ArrayList<>();
+        mAuth = FirebaseAuth.getInstance();     // must enable email/password signup for this to work
+        db = FirebaseFirestore.getInstance();   // must create a database on firestore for this to work
+        myMemories = new ArrayList<>();         // instantiate arraylist for app use
     }
 
 
     public FirebaseAuth getmAuth() {
         return mAuth;
     }
+    public FirebaseFirestore getDb(){return db;}
 
     public void logOutUser() {
         mAuth.signOut();
@@ -150,13 +133,72 @@ public class FirebaseHelper {
     }
 
 
-    public void editData(Memory w) {
+    public void editData(Memory m) {
+        // edit Memory m to the database
+        // this method is overloaded and incorporates the interface to handle the asynch calls
+        editData(m, new FirestoreCallback() {
+            @Override
+            public void onCallback(ArrayList<Memory> myList) {
+                Log.i(TAG, "Inside editData, onCallback " + myList.toString());
+            }
+        });
+    }
+
+    private void editData(Memory m, FirestoreCallback firestoreCallback) {
+        String docId = m.getDocID();
+        db.collection("users").document(uid).collection("myMemoryList")
+                .document(docId)
+                .set(m)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i(TAG, "Success updating document");
+                        readData(firestoreCallback);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(TAG, "Error updating document", e);
+                    }
+                });
+    }
+
+    public void deleteData(Memory m) {
+        // delete item w from database
+        // this method is overloaded and incorporates the interface to handle the asynch calls
+        deleteData(m, new FirestoreCallback() {
+            @Override
+            public void onCallback(ArrayList<Memory> myList) {
+                Log.i(TAG, "Inside deleteData, onCallBack" + myList.toString());
+            }
+        });
 
     }
 
-    public void deleteData(Memory w) {
-
+    private void deleteData(Memory m, FirestoreCallback firestoreCallback) {
+        // delete item w from database
+        String docId = m.getDocID();
+        db.collection("users").document(uid).collection("myMemoryList")
+                .document(docId)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i(TAG, m.getName() + " successfully deleted");
+                        readData(firestoreCallback);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i(TAG, "Error deleting document", e);
+                    }
+                });
     }
+
+
+
 
     public void updateUid(String uid) {
         this.uid = uid;
